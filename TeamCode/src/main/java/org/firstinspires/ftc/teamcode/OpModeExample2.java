@@ -29,8 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -47,13 +46,13 @@ This program contains an example of how to set up an OpMode, and run one motor.
 //If you uncomment the line above, this OpMode will not show up on the driverhub.
 //Useful for when you have old code that you still want to keep but don't intend
 //to use in the competition.
-public class Example1 extends LinearOpMode {
+public class OpModeExample2 extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftFrontDrive = null;
 
     @Override
-    public void runOpMode() {
+    public void init() {
 
         leftFrontDrive  = hardwareMap.get(DcMotor.class, "themotor");
         //In the rev driver hub, you have to name all the devices on your robot
@@ -77,24 +76,22 @@ public class Example1 extends LinearOpMode {
         //You can have multiple things on the screen at once; just call
         //addData multiple times.
 
-        waitForStart();
+
         //this pauses the program until the play button is pressed again.
         runtime.reset();
+    }
+
+    public void loop() {
+        double lateral = 1.0;
 
 
-        while (opModeIsActive()) {
-            //Everything within this loop will now run until the stop button is pressed.
-            double lateral =  gamepad1.left_stick_x*10;
+        // Send calculated power to the motor
+        leftFrontDrive.setPower(lateral);
+
+        // Show the elapsed game time and wheel power.
+        telemetry.addData("Status", "Run Time: " + runtime.toString());
+        telemetry.update();
+    }
+}
 
 
-
-
-
-            // Send calculated power to the motor
-            leftFrontDrive.setPower(lateral);
-
-            // Show the elapsed game time and wheel power.
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.update();
-        }
-    }}
