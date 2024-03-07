@@ -47,9 +47,7 @@ This program contains an example of how to set up an OpMode, and run one motor.
 //Useful for when you have old code that you still want to keep but don't intend
 //to use in the competition.
 public class OpModeExample extends LinearOpMode {
-
-    private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftFrontDrive = null;
+    private DcMotor leftFrontDrive;
 
     @Override
     public void runOpMode() {
@@ -78,22 +76,15 @@ public class OpModeExample extends LinearOpMode {
 
         waitForStart();
         //this pauses the program until the play button is pressed again.
-        runtime.reset();
 
 
         while (opModeIsActive()) {
             //Everything within this loop will now run until the stop button is pressed.
-            double lateral =  1.0;
-
-
-
-
+            double motor_speed =  1.0;
 
             // Send calculated power to the motor
-            leftFrontDrive.setPower(lateral);
+            leftFrontDrive.setPower(motor_speed);
 
-            // Show the elapsed game time and wheel power.
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
         }
     }}

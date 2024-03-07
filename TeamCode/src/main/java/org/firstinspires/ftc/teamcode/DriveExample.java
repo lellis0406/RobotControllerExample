@@ -29,9 +29,10 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
@@ -39,21 +40,26 @@ This program contains an example of how to set up an OpMode, and run one motor.
 
  */
 
-@TeleOp(name="test_1_motor", group="Linear OpMode")
+@TeleOp(name="drive_example_code", group="Linear OpMode")
 //Used to tell the program how to show up on the driver hub. MUST be present.
 
 //@Disabled
 //If you uncomment the line above, this OpMode will not show up on the driverhub.
 //Useful for when you have old code that you still want to keep but don't intend
 //to use in the competition.
-public class OpModeExample2 extends OpMode {
-
-    private DcMotor leftFrontDrive = null;
+public class DriveExample extends LinearOpMode {
+    private DcMotor leftFrontMotor;
+    private DcMotor rightFrontMotor;
+    private DcMotor leftBackMotor;
+    private DcMotor rightBackMotor;
 
     @Override
-    public void init() {
+    public void runOpMode() {
 
-        leftFrontDrive  = hardwareMap.get(DcMotor.class, "themotor");
+        leftFrontMotor  = hardwareMap.get(DcMotor.class, "leftFront");
+        rightFrontMotor  = hardwareMap.get(DcMotor.class, "rightFront");
+        leftBackMotor  = hardwareMap.get(DcMotor.class, "leftBack");
+        rightBackMotor  = hardwareMap.get(DcMotor.class, "rightBack");
         //In the rev driver hub, you have to name all the devices on your robot
         //(including motors). Once you have done this, you
         //need to hardware map these motors
@@ -61,7 +67,8 @@ public class OpModeExample2 extends OpMode {
         //the devicename MUST match the name on the driver hub for each device.
         //You must also provide the device type (see above).
 
-        leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
         //Sometimes, motors will be facing backwards on the robot.
         //This is how you flip its direction at the start rather than having
         //to reverse all of the inputs for the whole program.
@@ -75,18 +82,20 @@ public class OpModeExample2 extends OpMode {
         //You can have multiple things on the screen at once; just call
         //addData multiple times.
 
-
+        waitForStart();
         //this pauses the program until the play button is pressed again.
-    }
-
-    public void loop() {
-        double motor_speed = 1.0;
-
-        // Send calculated power to the motor
-        leftFrontDrive.setPower(motor_speed);
-
-        telemetry.update();
-    }
-}
 
 
+        while (opModeIsActive()) {
+            //Everything within this loop will now run until the stop button is pressed.
+            double drive = gamepad1.left_stick_y/2;
+            double turn = gamepad1.right_stick_x/2;
+
+            leftFrontMotor.setPower(drive - turn);
+            leftBackMotor.setPower(drive - turn);
+            rightFrontMotor.setPower(drive + turn);
+            rightBackMotor.setPower(drive + turn);
+
+            telemetry.update();
+        }
+    }}
