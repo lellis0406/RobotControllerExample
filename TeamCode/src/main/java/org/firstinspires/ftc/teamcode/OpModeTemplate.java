@@ -38,9 +38,36 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="OpModeExampleClass", group="Linear OpMode")
 public class OpModeTemplate extends LinearOpMode {
+
+    //Motor Setup part 1
+    //4 motors: backLeft, backRight, frontLeft, frontRight
+    //on the robot, these are called "BackLeft", "BackRight", "FrontLeft", "FrontRight"
+    private ElapsedTime runtime = new ElapsedTime();
+
     @Override
     public void runOpMode() {
-        
+        //Motor Setup part 2
 
+
+        while(/*OpModeIsActive*/) {
+
+
+            if(/*A is pressed*/) {
+                GoForwardThreeSeconds();
+            }
+
+            //Calculate motor speed based off controller input
+
+
+            //Set motorspeed
+        }
+
+    }
+
+    public void GoForwardThreeSeconds() {
+        runtime.reset();
+        while(runtime.seconds() < 3) {
+            //move forward (set motor speed)
+        }
     }
 }
