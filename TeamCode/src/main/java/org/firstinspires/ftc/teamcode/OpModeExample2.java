@@ -39,7 +39,7 @@ This program contains an example of how to set up an OpMode, and run one motor.
 
  */
 
-@TeleOp(name="test_1_motor", group="Linear OpMode")
+@TeleOp(name="test_2_motor", group="OpMode")
 //Used to tell the program how to show up on the driver hub. MUST be present.
 
 //@Disabled
