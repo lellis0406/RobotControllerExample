@@ -93,7 +93,6 @@ public class AutoExample extends LinearOpMode {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-
         // Step 2:  Spin right for 1.3 seconds
         leftDrive.setPower(TURN_SPEED);
         rightDrive.setPower(-TURN_SPEED);

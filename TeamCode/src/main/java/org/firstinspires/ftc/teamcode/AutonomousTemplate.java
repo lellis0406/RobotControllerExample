@@ -35,7 +35,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="OpModeExampleClass", group="Linear OpMode")
+@Autonomous(name="AutoExampleClass", group="Linear OpMode")
 public class AutonomousTemplate extends LinearOpMode {
 
     @Override

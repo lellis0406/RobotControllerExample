@@ -32,11 +32,11 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
 This program contains an example of how to set up an OpMode, and run one motor.
-
  */
 
 @TeleOp(name="test_1_motor", group="Linear OpMode")
@@ -66,6 +66,7 @@ public class OpModeExample extends LinearOpMode {
         //to reverse all of the inputs for the whole program.
 
         telemetry.addData("Status", "Initialized");
+        telemetry.addLine("testing");
         telemetry.update();
         //Telemetry is a very important part of debugging and programming your robot.
         //It allows you to output data to the screen of your driver hub.

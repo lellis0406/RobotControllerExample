@@ -32,13 +32,34 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
 
 @TeleOp(name="OpModeExampleClass", group="Linear OpMode")
 public class OpModeTemplate extends LinearOpMode {
 
+    DcMotor leftMotor;
+    DcMotor rightMotor;
     @Override
     public void runOpMode() {
+        leftMotor = hardwareMap.get(DcMotor.class, "left_motor");
+        rightMotor = hardwareMap.get(DcMotor.class, "right_motor");
+
+        telemetry.update();
+        waitForStart();
+
+//        leftMotor.setDirection(DcMotor.Direction.REVERSE);
+
+
+        while(opModeIsActive()) {
+            leftMotor.setPower(1);
+            rightMotor.setPower(1);
+
+            telemetry.update();
+        }
+
+
 
     }
 }
