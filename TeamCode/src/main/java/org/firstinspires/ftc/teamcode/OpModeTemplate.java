@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -40,26 +41,44 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class OpModeTemplate extends LinearOpMode {
 
     //Motor Setup part 1
+
+    private DcMotor backLeft;
+
+    private DcMotor backRight;
+
+    private DcMotor frontLeft;
+
+    private DcMotor frontRight;
     //4 motors: backLeft, backRight, frontLeft, frontRight
     //on the robot, these are called "BackLeft", "BackRight", "FrontLeft", "FrontRight"
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void runOpMode() {
-        //Motor Setup part 2
+        frontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
+        frontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+        backLeft = hardwareMap.get(DcMotor.class, "BackLeft");
+        backRight = hardwareMap.get(DcMotor.class, "BackRight");
 
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
 
-        while(/*OpModeIsActive*/) {
+        waitForStart();
 
+        while(opModeIsActive()) {
 
-            if(/*A is pressed*/) {
+            if(gamepad1.a) {
                 GoForwardThreeSeconds();
             }
 
-            //Calculate motor speed based off controller input
+            double drive = gamepad1.left_stick_y/2;
+            double turn = gamepad1.right_stick_x/2;
 
+            frontLeft.setPower(drive - turn);
+            frontRight.setPower(drive + turn);
+            backLeft.setPower(drive - turn);
+            backRight.setPower(drive + turn);
 
-            //Set motorspeed
         }
 
     }
@@ -67,7 +86,10 @@ public class OpModeTemplate extends LinearOpMode {
     public void GoForwardThreeSeconds() {
         runtime.reset();
         while(runtime.seconds() < 3) {
-            //move forward (set motor speed)
+            frontLeft.setPower(1);
+            frontRight.setPower(1);
+            backLeft.setPower(1);
+            backRight.setPower(1);
         }
     }
 }
