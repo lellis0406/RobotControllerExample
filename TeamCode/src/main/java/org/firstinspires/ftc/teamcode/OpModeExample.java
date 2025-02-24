@@ -32,8 +32,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
 This program contains an example of how to set up an OpMode, and run one motor.
@@ -46,6 +44,7 @@ This program contains an example of how to set up an OpMode, and run one motor.
 //If you uncomment the line above, this OpMode will not show up on the driverhub.
 //Useful for when you have old code that you still want to keep but don't intend
 //to use in the competition.
+
 public class OpModeExample extends LinearOpMode {
     private DcMotor leftFrontDrive;
 
