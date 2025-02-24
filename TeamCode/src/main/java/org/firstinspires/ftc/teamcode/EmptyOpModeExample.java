@@ -37,8 +37,15 @@ public class EmptyOpModeExample extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+        //Code that runs once, after pressing the init button but before pressing start
+
         waitForStart();
+
+        //Code that runs once, after pressing start
+
         while (opModeIsActive()) {
+
+            //Code that will run infinitely until the stop button is pressed
 
         }
     }}

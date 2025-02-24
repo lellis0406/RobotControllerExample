@@ -56,7 +56,7 @@ public class OpModeExample extends LinearOpMode {
         //(including motors). Once you have done this, you
         //need to hardware map these motors
         //using this function. The name in
-        //the devicename MUST match the name on the driver hub for each device.
+        //the deviceName field MUST match the name on the driver hub for each device.
         //You must also provide the device type (see above).
 
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
